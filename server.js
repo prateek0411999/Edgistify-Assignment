@@ -11,7 +11,7 @@ require('dotenv').config({
 })
 
 
-const app = express()
+const app = express();
 
 // Connect to database
 connectDB();
@@ -40,7 +40,7 @@ app.use((req, res) => {
         success: false,
         msg: "Page not Found"
     })
-})
+});
 
 const PORT = process.env.PORT || 5000
 

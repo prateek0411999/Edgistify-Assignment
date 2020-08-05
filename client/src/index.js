@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import {BrowserRouter,Route,Redirect,Switch} from 'react-router-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Register from './Components/Register'
 
+import 'react-toastify/dist/ReactToastify.css';
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  
+   <BrowserRouter>
+   <Switch>
+   <Route path='/' exact render={props => <App {...props} />} />
+   <Route path='/register' exact render={props => <Register {...props} />} />
+   </Switch>
+   </BrowserRouter>,
+  
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
