@@ -3,10 +3,14 @@ const router = express.Router()
 
 //loading all the controllers
 const {
-    registerController
+    registerController,
+    activationController,
+    loginController,
+
 } = require('../controllers/auth.controller')
 
 console.log('*************');
-router.post('/register',registerController)
-
+router.post('/register',registerController);
+router.post('/activation', activationController)
+router.post('/login',loginController)
 module.exports = router

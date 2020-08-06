@@ -54,6 +54,7 @@ export const signout = (next)=>{
     removeCookie('token')
     removeLocalStorage('user')
 }
+
 //getting user info from the localstorage
 export const isAuth = () => {
     if (window !== 'undefined') {

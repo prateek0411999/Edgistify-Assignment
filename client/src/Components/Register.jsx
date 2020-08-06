@@ -25,7 +25,7 @@ const Register = () => {
             setFormData({ ...formData, textChange: 'Submitting' });
             console.log(process.env.REACT_APP_API_URL);
             axios
-             .post('http://localhost:5000/api/register', {
+             .post(`${process.env.REACT_APP_API_URL}/register`, {
                 name,
                 email,
                 password: password1
