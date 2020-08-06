@@ -12,8 +12,10 @@ ReactDOM.render(
    <BrowserRouter>
    <Switch>
    <Route path='/' exact render={props => <App {...props} />} />
-   <Route path='/register' exact render={props => <Register {...props} />} />
    <Route path='/login' exact render={props => <Login {...props} />} />
+   <Route path='/register' exact render={props => <Register {...props} />} />
+   <Route path='/users/activate/:token' exact render={props => <Activate {...props} />} />
+   
    </Switch>
    </BrowserRouter>,
   

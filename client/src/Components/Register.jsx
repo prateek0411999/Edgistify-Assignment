@@ -25,7 +25,7 @@ const Register = () => {
             setFormData({ ...formData, textChange: 'Submitting' });
             console.log(process.env.REACT_APP_API_URL);
             axios
-             .post(`${process.env.REACT_APP_API_URL}/register`, {
+             .post('http://localhost:5000/api/register', {
                 name,
                 email,
                 password: password1
@@ -51,8 +51,8 @@ const Register = () => {
                   password2: '',
                   textChange: 'Sign Up'
                 });
-                console.log(err.response);
-                toast.error(err.response.data.errors);
+                toast.error("Already Signed up please Sign in ")
+                
               });
           } else {
             toast.error("Passwords don't matches");

@@ -29,7 +29,7 @@ const Activate = ({ match }) => {
       e.preventDefault();
   
       axios
-        .post(`${process.env.REACT_APP_API_URL}/activation`, {
+        .post('http://localhost:5000/api/activation', {
           token
         })
         .then(res => {

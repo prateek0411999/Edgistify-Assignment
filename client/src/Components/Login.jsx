@@ -27,29 +27,28 @@ const Login = ({ history }) => {
   };
 
   
+  //submit the data to backend
   const handleSubmit = e => {
     //console.log(process.env.REACT_APP_API_URL);
     e.preventDefault();
     if (email && password1) {
       setFormData({ ...formData, textChange: 'Submitting' });
       axios
-        .post(`${process.env.REACT_APP_API_URL}/login`, {
+        .post('http://localhost:5000/api/login', {
           email,
           password: password1
         })
         .then(res => {
-          authenticate(res, () => {
+          
             setFormData({
               ...formData,
               email: '',
               password1: '',
               textChange: 'Submitted'
             });
-            isAuth() && isAuth().role === 'admin'
-              ? history.push('/admin')
-              : history.push('/private');
+            console.log(res.data);
             toast.success(`Hey ${res.data.user.name}, Welcome back!`);
-          });
+          
         })
         .catch(err => {
           setFormData({
@@ -58,7 +57,7 @@ const Login = ({ history }) => {
             password1: '',
             textChange: 'Sign In'
           });
-          console.log(err.response);
+          
           toast.error(err.response.data.errors);
         });
     } else {
