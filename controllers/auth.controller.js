@@ -1,18 +1,18 @@
 const User = require('../models/auth.model');
 const expressJwt = require('express-jwt');
 const _ = require('lodash');
-const { OAuth2Client } = require('google-auth-library');
+
 const fetch = require('node-fetch');
 
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const expressJWT = require('express-jwt');
-const { errorHandler } = require('../helpers/dbErrorHandling');
-const sgMail = require('@sendgrid/mail');
-const nodemailer = require("nodemailer");
-const  mailgun= require('mailgun-js');
 
-const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: process.env.DOMAIN})
+const { errorHandler } = require('../helpers/dbErrorHandling');
+//const sgMail = require('@sendgrid/mail');
+const nodemailer = require("nodemailer");
+//const  mailgun= require('mailgun-js');
+
+//const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: process.env.DOMAIN})
 // sgMail.setApiKey(process.env.MAIL_KEY);
 
 
@@ -275,3 +275,6 @@ exports.loginController = (req, res) => {
   }
 };
 
+exports.homeController =(req,res) =>{
+  
+}

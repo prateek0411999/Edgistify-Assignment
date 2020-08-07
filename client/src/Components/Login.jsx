@@ -5,12 +5,15 @@ import axios from 'axios';
 import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 
+import { useHistory } from "react-router-dom";
+
 const Login = ({ history }) => {
   const [formData, setFormData] = useState({
     email: '',
     password1: '',
     textChange: 'Sign In'
   });
+  let history1 = useHistory();
   const { email, password1, textChange } = formData;
 
   const handleChange = text => e => {
@@ -18,14 +21,6 @@ const Login = ({ history }) => {
   };
 
   
-  const informParent = response => {
-    authenticate(response, () => {
-      isAuth() && isAuth().role === 'admin'
-        ? history.push('/admin')
-        : history.push('/private');
-    });
-  };
-
   
   //submit the data to backend
   const handleSubmit = e => {
@@ -39,16 +34,26 @@ const Login = ({ history }) => {
           password: password1
         })
         .then(res => {
-          
+          authenticate(res, () => {
             setFormData({
               ...formData,
               email: '',
               password1: '',
               textChange: 'Submitted'
             });
-            console.log(res.data);
+            
             toast.success(`Hey ${res.data.user.name}, Welcome back!`);
-          
+           if (isAuth()) {
+            console.log(formData);
+             history1.push({pathname:'/home',state: { detail: formData }})
+            }
+              else{
+                
+                history1.push('/login');
+              }
+              
+              
+          });
         })
         .catch(err => {
           setFormData({
@@ -58,7 +63,7 @@ const Login = ({ history }) => {
             textChange: 'Sign In'
           });
           
-          toast.error(err.response.data.errors);
+          toast.error("Error Occured");
         });
     } else {
       toast.error('Please fill all fields');

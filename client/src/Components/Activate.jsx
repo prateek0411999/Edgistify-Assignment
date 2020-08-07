@@ -43,6 +43,7 @@ const Activate = ({ match }) => {
         .catch(err => {
           
           toast.error(err.response.data.errors);
+          
         });
     };
   

@@ -1,4 +1,7 @@
 import cookie from 'js-cookie';
+import { json } from 'body-parser';
+import { JsonWebTokenError } from 'jsonwebtoken';
+
 
 //set in cookie
 export const setCookie =(key,value) =>{
@@ -19,6 +22,7 @@ export const removeCookie = key =>{
     }
 }
 
+
 //getting the token from cookie 
 //after this we'll store it in the localstorage
 export const getCookie = key =>{
@@ -26,6 +30,8 @@ export const getCookie = key =>{
         return cookie.get(key)
     }
 }
+
+
 //now setting it in local storage
 export const setLocalStorage = (key,value) =>{
     if(window!=='undefined'){
@@ -34,11 +40,13 @@ export const setLocalStorage = (key,value) =>{
 }
 //removing it
 
+
 export const removeLocalStorage = key =>{
     if(window!=='undefined'){
         localStorage.removeItem(key)
     }
 }
+
 
 //Authenticating after user login
 export const authenticate =(res,next)=>{
@@ -49,11 +57,13 @@ export const authenticate =(res,next)=>{
     
 }
 
+
 //signout
 export const signout = (next)=>{
     removeCookie('token')
     removeLocalStorage('user')
 }
+
 
 //getting user info from the localstorage
 export const isAuth = () => {
@@ -61,10 +71,12 @@ export const isAuth = () => {
         const cookieChecked = getCookie('token');
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
-                return JSON.parse(localStorage.getItem('user'));
+          
+                return (localStorage.getItem('user'));
             } else {
                 return false;
             }
         }
     }
 };
+
