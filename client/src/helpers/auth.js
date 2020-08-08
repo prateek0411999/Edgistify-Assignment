@@ -1,6 +1,7 @@
 import cookie from 'js-cookie';
 import { json } from 'body-parser';
 import { JsonWebTokenError } from 'jsonwebtoken';
+import { rearg } from 'lodash';
 
 
 //set in cookie
@@ -34,8 +35,10 @@ export const getCookie = key =>{
 
 //now setting it in local storage
 export const setLocalStorage = (key,value) =>{
+    console.log('value ka data');
+    console.log(value);
     if(window!=='undefined'){
-        localStorage.setItem(key,JSON.stringify)
+        localStorage.setItem(key,JSON.stringify(value))
     }
 }
 //removing it

@@ -17,7 +17,6 @@ ReactDOM.render(
    <Route path='/login' exact render={props => <Login {...props} />} />
    <Route path='/register' exact render={props => <Register {...props} />} />
    <Route path='/users/activate/:token' exact render={props => <Activate {...props} />} />
-   
    <PrivateRoute path="/home" exact component={Home}  />
    
    </Switch>

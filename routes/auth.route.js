@@ -6,7 +6,9 @@ const {
     registerController,
     activationController,
     loginController,
-    homeController
+    homeController1,
+    homeController,
+    postController
 
 } = require('../controllers/auth.controller')
 
@@ -18,5 +20,7 @@ console.log('*************');
 router.post('/register',validRegister,registerController);
 router.post('/activation', activationController)
 router.post('/login',validLogin,loginController)
-router.post('/home',homeController)
+router.post('/home',homeController1)
+router.get('/home',homeController);
+router.post('/posting',postController);
 module.exports = router
