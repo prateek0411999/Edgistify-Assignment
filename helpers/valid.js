@@ -24,3 +24,4 @@ exports.validLogin = [
         min: 6
     }).withMessage('Password must contain at least 6 characters').matches(/\d/).withMessage('password must contain a number')
 ]
+//done

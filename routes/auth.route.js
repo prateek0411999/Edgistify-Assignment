@@ -24,3 +24,4 @@ router.post('/home',homeController1)
 router.get('/home',homeController);
 router.post('/posting',postController);
 module.exports = router
+//done

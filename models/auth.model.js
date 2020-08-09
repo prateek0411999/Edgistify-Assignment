@@ -72,3 +72,4 @@ userScheama.methods = {
 };
 
 module.exports = mongoose.model('User', userScheama);
+//done
