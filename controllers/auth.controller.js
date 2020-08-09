@@ -278,32 +278,37 @@ exports.loginController = (req, res) => {
 
 exports.homeController =(req,res) =>{
   
-  let get = req.body;
-  console.log('::::::::::::', get);
-  Post.find().sort({timeStamp: -1}),function(err,allPosts){
+  
+  console.log(':::::::::::: Getting all the data ');
+  Post.find({}, {}, {sort: '-timeStamp'},function(err,allPosts){
     
-    if(err)
+         if(err)
         {
             console.log('Error!!!@@@@'+err);
+
+      
         }
         else
         {
-            console.log('||||}}}}||||}}}|||}')
-            res.status(200).json(allPosts);
+            console.log('||||}}}}||||}}}|||}');
+           console.log(allPosts)
+            res.status(200).send(allPosts);
         }
-    
-  }};
+    }
+  )};
 
 
 
 exports.homeController1 =(req,res) =>{
   let post = req.body;
   console.log('::::::::::::', post);
-  Post.insertOne({post: post.post, posterEmail: post.email, timeStamp: post.date, Comments:[{by: "null", comment: "null"}] },(err,done)=>{
+  
+  Post.create({post: post.post, posterEmail: post.email, timeStamp: post.date, Comments:[{by: "null", comment: "null"}] },(err,done)=>{
     if(err)
     {
       res.send("Error Posting",err);
     }else{
+      console.log("true send hua");
       res.status(200).send(true);
     }
   })
@@ -313,7 +318,7 @@ exports.homeController1 =(req,res) =>{
 exports.postController =(req,res) =>{
   let data = req.body;
   console.log('++_+_+_+_+_+_+_+_', data);
-  Post.updateOne({posterEmail: data.email},{$set:{Comments:[{ by: data.commentBy, comment: data.comment}]}},(err,done)=>{
+  Post.updateOne({posterEmail: data.email},{$set:{Comments:[{ by: data.by, comment: data.comment}]}},(err,done)=>{
     if(err)
     {
       res.send("Error Updating",err);
